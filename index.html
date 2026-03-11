@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Recruitment - HR Intelligence Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="icon"></span>
+                <h1>HR Recruitment</h1>
+            </div>
+            <nav>
+                <button class="nav-btn active" data-tab="unified">Unified Recruiter</button>
+                <button class="nav-btn" data-tab="cv-extract">CV Extract</button>
+                <button class="nav-btn" data-tab="resume-ranking">Resume Ranking</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Unified Recruiter Tab (Default) -->
+            <section id="unified" class="tab-content active">
+                <div class="card">
+                    <h2>HR Pipeline</h2>
+                    <p>Upload multiple resumes and provide a Job Description to get ranked candidates with AI
+                        suggestions in one click.</p>
+                    <form id="unified-form">
+                        <div class="form-group">
+                            <label for="unified-jd">Job Description</label>
+                            <textarea id="unified-jd" placeholder="Paste the job description here..."
+                                required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="unified-files">Select Resumes (PDF, Multiple allowed)</label>
+                            <input type="file" id="unified-files" accept=".pdf" multiple required>
+                            <small>You can select multiple PDF files at once.</small>
+                        </div>
+                        <button type="submit" class="btn-primary">Process All Candidates</button>
+                    </form>
+                    <div id="unified-result" class="result-container hidden">
+                        <div class="pipeline-list" id="pipeline-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CV Extract Tab -->
+            <section id="cv-extract" class="tab-content">
+                <div class="card">
+                    <h2>Resume Extraction & Analysis</h2>
+                    <p>Upload a resume (PDF) to extract key information and get AI-powered insights.</p>
+                    <form id="extract-form">
+                        <div class="form-group">
+                            <label for="resume-file">Select Resume (PDF)</label>
+                            <input type="file" id="resume-file" accept=".pdf" required>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="include-analysis">
+                            <label for="include-analysis">Include AI Analysis</label>
+                        </div>
+                        <button type="submit" class="btn-primary">Extract & Analyze</button>
+                    </form>
+                    <div id="extract-result" class="result-container hidden">
+                        <pre id="extract-json"></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resume Ranking Tab -->
+            <section id="resume-ranking" class="tab-content">
+                <div class="card">
+                    <h2>Resume Ranking</h2>
+                    <p>Rank multiple resumes against a specific job description using our hybrid AI ranking system.</p>
+                    <form id="ranking-form">
+                        <div class="form-group">
+                            <label for="job-description">Job Description</label>
+                            <textarea id="job-description" placeholder="Paste the job description here..."
+                                required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="candidate-data">Candidate Resumes (JSON Format)</label>
+                            <textarea id="candidate-data" placeholder='[{"name": "John Doe", "text": "Resume text..."}]'
+                                required></textarea>
+                            <small>Or upload multiple files... (Work in Progress)</small>
+                        </div>
+                        <button type="submit" class="btn-primary">Rank Candidates</button>
+                    </form>
+                    <div id="ranking-result" class="result-container hidden">
+                        <div class="ranking-list" id="ranking-list"></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <div id="status-indicator" class="status">Server OK</div>
+            <p>&copy; HR Recruitment</p>
+        </footer>
+    </div>
+
+    <div id="loader" class="loader-overlay hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
